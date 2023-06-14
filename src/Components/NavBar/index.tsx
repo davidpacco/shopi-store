@@ -13,9 +13,9 @@ export function NavBar() {
   ]
 
   const NavBarRight:NavItemType[] = [
-    { to: 'my-orders', name: 'Shopi' },
-    { to: 'my-account', name: 'All' },
-    { to: 'signin', name: 'Clothes' },
+    { to: 'my-orders', name: 'My orders' },
+    { to: 'my-account', name: 'My account' },
+    { to: 'signin', name: 'Sign In' },
   ]
 
   return (
