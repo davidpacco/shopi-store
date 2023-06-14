@@ -1,7 +1,7 @@
 export function NotFound() {
   return (
     <>
-      Not found
+      404 Not found
     </>
   )
 }

@@ -1,11 +1,12 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
+import { Layout } from '../../Components/NavBar/Layout'
 import { Home } from '../Home'
 import { SignIn } from '../SignIn'
 import { MyAccount } from '../MyAccount'
 import { MyOrder } from '../MyOrder'
 import { MyOrders } from '../MyOrders'
 import { NotFound } from '../NotFound'
-import { NavBar } from '../../Components/NavBar'
+import { NavBar } from '../../Components/NavBar/NavBar'
 import './App.css'
 
 const AppRoutes = () => {
@@ -24,8 +25,10 @@ const AppRoutes = () => {
 function App() {
   return (
     <BrowserRouter>
-      {/* <AppRoutes /> */}
       <NavBar />
+      <Layout>
+        <AppRoutes />
+      </Layout>
     </BrowserRouter>
   )
 }

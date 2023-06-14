@@ -1,7 +1,7 @@
 export function SignIn() {
   return (
     <>
-      Sign in
+      Sign In
     </>
   )
 }

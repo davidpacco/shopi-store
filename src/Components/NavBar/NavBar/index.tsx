@@ -1,5 +1,5 @@
-import { NavItem } from "./NavItem"
-import { NavItemType } from "../../Interfaces/Interfaces"
+import { NavItem } from "../NavItem"
+import { NavItemType } from "../../../Interfaces/Interfaces"
 
 export function NavBar() {
   const NavBarLeft:NavItemType[] = [
@@ -19,7 +19,7 @@ export function NavBar() {
   ]
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 w-full py-3 px-8 font-light text-base">
+    <nav className="flex justify-between items-center fixed z-10 w-full py-3 px-8 font-light text-base top-0">
       <ul className="flex items-center gap-3">
 
         {NavBarLeft.map(item => (
