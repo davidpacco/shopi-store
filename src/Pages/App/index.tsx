@@ -5,6 +5,7 @@ import { MyAccount } from '../MyAccount'
 import { MyOrder } from '../MyOrder'
 import { MyOrders } from '../MyOrders'
 import { NotFound } from '../NotFound'
+import { NavBar } from '../../Components/NavBar'
 import './App.css'
 
 const AppRoutes = () => {
@@ -16,13 +17,15 @@ const AppRoutes = () => {
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/*', element: <NotFound /> },
   ])
+
   return routes
 }
 
 function App() {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      {/* <AppRoutes /> */}
+      <NavBar />
     </BrowserRouter>
   )
 }
