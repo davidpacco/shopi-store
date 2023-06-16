@@ -1,7 +1,11 @@
 import { NavItem } from "../NavItem"
 import { NavItemType } from "../../../Interfaces/Interfaces"
+import { useContext } from "react"
+import { ShoppingCartContext } from "../../../Context"
 
 export function NavBar() {
+  const { counter } = useContext(ShoppingCartContext)
+
   const NavBarLeft:NavItemType[] = [
     { to: '/', name: 'Shopi', logo: true },
     { to: '/', name: 'All' },
@@ -45,7 +49,7 @@ export function NavBar() {
         ))}
 
         <li>
-          🛒0
+          🛒{ counter }
         </li>
       </ul>
     </nav>

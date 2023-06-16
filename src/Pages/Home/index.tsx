@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Card } from "../../Components/Card";
-import { NavItem } from "../../Components/NavBar/NavItem";
 import { ProductDataType } from "../../Interfaces/Interfaces"
 
 export function Home() {

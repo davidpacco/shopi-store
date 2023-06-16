@@ -1,6 +1,10 @@
+import { useContext } from "react"
 import { ProductDataType } from "../../Interfaces/Interfaces"
+import { ShoppingCartContext } from "../../Context"
 
 export function Card({ product }: { product: ProductDataType }) {
+  const { counter, setCounter } = useContext(ShoppingCartContext)
+
   return (
     <div className="bg-white cursor-pointer w-56 h-60 rounded-2xl">
       <figure className="relative mb-1 w-full h-4/5">
@@ -9,10 +13,13 @@ export function Card({ product }: { product: ProductDataType }) {
         </span>
         <img
           className="w-full h-full object-cover rounded-2xl"
-          src={`${product.images[0]}`}
+          src={`${ product.images[0] }`}
           alt="headphones"
         />
-        <button className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2">
+        <button
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2"
+          onClick={() => setCounter(counter + 1)}
+        >
           +
         </button>
       </figure>
@@ -21,7 +28,7 @@ export function Card({ product }: { product: ProductDataType }) {
           { product.title }
         </span>
         <span className="text-lg font-medium">
-          { `$${product.price}` }
+          { `$${ product.price }` }
         </span>
       </p>
     </div>
