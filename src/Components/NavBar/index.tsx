@@ -28,6 +28,7 @@ export function NavBar() {
 
         {NavBarLeft.map(item => (
           <NavItem
+            key={item.name}
             to={item.to}
             isLogo={item?.logo}
           >
@@ -43,7 +44,10 @@ export function NavBar() {
         </li>
 
         {NavBarRight.map(item => (
-          <NavItem to={item.to}>
+          <NavItem
+            key={item.name}
+            to={item.to}
+          >
             {item.name}
           </NavItem>
         ))}
