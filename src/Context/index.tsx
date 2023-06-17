@@ -1,20 +1,19 @@
 import { ReactNode, createContext, useState } from "react";
-
-type ShoppingCartContextType = {
-  counter: number
-  setCounter: (num: number) => void
-  isProductDetailOpen: boolean
-  openProductDetail: () => void
-  closeProductDetail: () => void
-}
+import { ShoppingCartContextType, ProductDataType } from "../Interfaces/Interfaces";
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType>({} as ShoppingCartContextType)
 
 export function ShoppingCartProvider({ children }: {children: ReactNode}) {
+  // Shopping cart icon counter
   const [counter, setCounter] = useState(0)
+
+  // Product detail side bar - Open/Close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
+
+  // Selected product details
+  const [productInfo, setProductInfo] = useState<ProductDataType>({} as ProductDataType)
 
   return (
     <ShoppingCartContext.Provider
@@ -23,7 +22,9 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
         setCounter,
         isProductDetailOpen,
         openProductDetail,
-        closeProductDetail
+        closeProductDetail,
+        productInfo,
+        setProductInfo
       }}
     >
       { children }

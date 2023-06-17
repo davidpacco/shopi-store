@@ -3,12 +3,22 @@ import { ProductDataType } from "../../Interfaces/Interfaces"
 import { ShoppingCartContext } from "../../Context"
 
 export function Card({ product }: { product: ProductDataType }) {
-  const { counter, setCounter, openProductDetail } = useContext(ShoppingCartContext)
+  const {
+    counter,
+    setCounter,
+    openProductDetail,
+    setProductInfo
+  } = useContext(ShoppingCartContext)
+
+  function showProduct() {
+    setProductInfo(product)
+    openProductDetail()
+  }
 
   return (
     <div
       className="bg-white cursor-pointer w-56 rounded-2xl h-fit"
-      onClick={() => openProductDetail()}
+      onClick={() => showProduct()}
     >
       <figure className="relative mb-1 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-sm m-2 px-2">

@@ -3,11 +3,14 @@ import './styles.css'
 import { ShoppingCartContext } from '../../Context'
 
 export function ProductDetail() {
-  const { closeProductDetail } = useContext(ShoppingCartContext)
+  const {
+    closeProductDetail,
+    productInfo
+  } = useContext(ShoppingCartContext)
 
   return (
-    <aside className="product-detail flex flex-col fixed right-0 bottom-0 bg-white border border-black rounded-xl">
-      <div className="flex justify-between items-center p-6">
+    <aside className="product-detail flex flex-col fixed right-0 bottom-0 bg-white border border-black rounded-xl p-6 gap-3">
+      <div className="flex justify-between items-center">
         <h2 className="font-bold text-lg">Detail</h2>
         <button onClick={() => closeProductDetail()}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -15,6 +18,24 @@ export function ProductDetail() {
           </svg>
         </button>
       </div>
+      <figure className="">
+        <img
+          className='w-full h-full rounded-xl'
+          src={productInfo.images[0]}
+          alt={ productInfo.title }
+        />
+      </figure>
+      <p className='flex flex-col'>
+        <span className='font-bold text-lg'>
+          { productInfo.title }
+        </span>
+        <span className='font-medium mb-2'>
+          ${ productInfo.price }
+        </span>
+        <span className='font-light'>
+          { productInfo.description }
+        </span>
+      </p>
     </aside>
   )
 }
