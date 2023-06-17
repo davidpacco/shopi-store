@@ -7,12 +7,19 @@ export function Card({ product }: { product: ProductDataType }) {
     counter,
     setCounter,
     openProductDetail,
-    setProductInfo
+    setProductInfo,
+    cartProducts,
+    setCartProducts
   } = useContext(ShoppingCartContext)
 
   function showProduct() {
     setProductInfo(product)
     openProductDetail()
+  }
+
+  function addToCart() {
+    setCartProducts([...cartProducts, product])
+    setCounter(counter + 1)
   }
 
   return (
@@ -30,8 +37,11 @@ export function Card({ product }: { product: ProductDataType }) {
           alt="headphones"
         />
         <button
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-          onClick={() => setCounter(counter + 1)}
+          className="absolute top-0 right-0 grid place-content-center bg-white w-6 h-6 rounded-full m-2 p-2 active:scale-90 duration-200 origin-center"
+          onClick={(e) => {
+            addToCart()
+            e.stopPropagation()
+          }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />

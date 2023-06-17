@@ -23,4 +23,6 @@ export type ShoppingCartContextType = {
   closeProductDetail: () => void
   productInfo: ProductDataType
   setProductInfo: (product: ProductDataType) => void
+  cartProducts: ProductDataType[],
+  setCartProducts: (product: ProductDataType[]) => void
 }
