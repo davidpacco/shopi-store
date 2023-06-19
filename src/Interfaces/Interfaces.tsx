@@ -33,5 +33,13 @@ export type ShoppingCartContextType = {
   setCartProducts: (product: CartProductsDataType[]) => void
   isCheckoutSideMenuOpen: boolean,
   openCheckoutSideMenu: () => void,
-  closeCheckoutSideMenu: () => void
+  closeCheckoutSideMenu: () => void,
+  order: Order[],
+  setOrder: (order: Order[]) => void
+}
+
+export type Order = {
+  date: Date
+  products: CartProductsDataType[]
+  total: number
 }

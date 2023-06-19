@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { ShoppingCartContext } from '../../Context'
 import { CheckoutOrderCard } from '../CheckoutOrderCard'
 import { getTotal } from '../../Utils'
@@ -10,7 +11,9 @@ export function CheckoutSideMenu() {
     setCounter,
     cartProducts,
     setCartProducts,
-    closeCheckoutSideMenu
+    closeCheckoutSideMenu,
+    order,
+    setOrder
   } = useContext(ShoppingCartContext)
   const isCartEmpty = () => {
     return cartProducts.length === 0
@@ -23,11 +26,23 @@ export function CheckoutSideMenu() {
     setCartProducts(updatedCart)
   }
 
+  const placeOrder = () => {
+    const newOrder = {
+      date: new Date(),
+      products: cartProducts,
+      total: getTotal(cartProducts)
+    }
+    setOrder([...order, newOrder])
+    setCartProducts([])
+    closeCheckoutSideMenu()
+    setCounter(0)
+  }
+
   return (
     <aside className="checkout-menu flex flex-col fixed right-0 bottom-0 bg-white border border-black rounded-xl p-6 gap-3 overflow-y-scroll">
 
       <div className="flex justify-between items-center">
-        <h2 className="font-bold text-lg">Detail</h2>
+        <h2 className="font-bold text-lg">Order detail</h2>
         <button
           className='duration-200 hover:scale-110'
           onClick={() => closeCheckoutSideMenu()}
@@ -54,9 +69,14 @@ export function CheckoutSideMenu() {
           <span>Total</span>
           <span>${ getTotal(cartProducts) }</span>
         </p>
-        <button className={`${isCartEmpty() ? "hidden" : "grid"} text-white font-semibold bg-black border-2 border-black rounded-lg py-1 w-full duration-200 active:scale-90 hover:bg-white hover:text-black`}>
-          Proceed to checkout
-        </button>
+        <Link to="/my-orders/last">
+          <button
+            className={`${isCartEmpty() ? "hidden" : "grid"} text-white font-semibold bg-black border-2 border-black rounded-lg py-1 w-full duration-200 active:scale-90 hover:bg-white hover:text-black`}
+            onClick={placeOrder}
+          >
+            Proceed to checkout
+          </button>
+        </Link>
       </div>
       <p className={`${isCartEmpty() ? "grid" : "hidden"} place-content-center text-center h-full text-lg font-medium`}>Your cart is empty</p>
     </aside>

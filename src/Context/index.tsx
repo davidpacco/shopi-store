@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-import { ShoppingCartContextType, ProductDataType, CartProductsDataType } from "../Interfaces/Interfaces";
+import { ShoppingCartContextType, ProductDataType, CartProductsDataType, Order } from "../Interfaces/Interfaces";
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType>({} as ShoppingCartContextType)
 
@@ -23,6 +23,9 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   // Shopping cart - add products
   const [cartProducts, setCartProducts] = useState([] as CartProductsDataType[])
 
+  // Shopping cart - place order
+  const [order, setOrder] = useState([] as Order[])
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -37,7 +40,9 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
         setCartProducts,
         isCheckoutSideMenuOpen,
         openCheckoutSideMenu,
-        closeCheckoutSideMenu
+        closeCheckoutSideMenu,
+        order,
+        setOrder
       }}
     >
       { children }
