@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { ProductDataType } from "../../Interfaces/Interfaces"
+import { CartProductsDataType, ProductDataType } from "../../Interfaces/Interfaces"
 import { ShoppingCartContext } from "../../Context"
 
 export function Card({ product }: { product: ProductDataType }) {
@@ -7,6 +7,9 @@ export function Card({ product }: { product: ProductDataType }) {
     counter,
     setCounter,
     openProductDetail,
+    closeProductDetail,
+    openCheckoutSideMenu,
+    closeCheckoutSideMenu,
     setProductInfo,
     cartProducts,
     setCartProducts
@@ -14,11 +17,29 @@ export function Card({ product }: { product: ProductDataType }) {
 
   function showProduct() {
     setProductInfo(product)
+    closeCheckoutSideMenu()
     openProductDetail()
   }
 
   function addToCart() {
-    setCartProducts([...cartProducts, product])
+    let index = -1
+    for (let i = 0; i < cartProducts.length; i++) {
+      if (product.id === cartProducts[i].id) {
+        index = i
+      }
+    }
+
+    if (index === -1) {
+      const productAdded:CartProductsDataType = {
+        ...product,
+        quantity: 1
+      }
+      setCartProducts([...cartProducts, productAdded])
+    } else {
+      cartProducts[index].quantity += 1
+    }
+    closeProductDetail()
+    openCheckoutSideMenu()
     setCounter(counter + 1)
   }
 
@@ -32,7 +53,7 @@ export function Card({ product }: { product: ProductDataType }) {
           { product.category.name }
         </span>
         <img
-          className="w-full h-full object-cover rounded-2xl"
+          className="w-full h-full object-contain rounded-2xl"
           src={`${ product.images[0] }`}
           alt="headphones"
         />

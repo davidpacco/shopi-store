@@ -1,0 +1,9 @@
+.checkout-menu {
+  width: 360px;
+  height: 100%;
+  max-height: calc(100vh - 52px);
+}
+
+.checkout-menu::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}

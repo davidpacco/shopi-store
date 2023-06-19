@@ -15,6 +15,12 @@ export type ProductDataType = {
   images: string[]
 }
 
+type ProductQuantity = {
+  quantity: number
+}
+
+export type CartProductsDataType = ProductDataType & ProductQuantity
+
 export type ShoppingCartContextType = {
   counter: number
   setCounter: (num: number) => void
@@ -23,6 +29,9 @@ export type ShoppingCartContextType = {
   closeProductDetail: () => void
   productInfo: ProductDataType
   setProductInfo: (product: ProductDataType) => void
-  cartProducts: ProductDataType[],
-  setCartProducts: (product: ProductDataType[]) => void
+  cartProducts: CartProductsDataType[],
+  setCartProducts: (product: CartProductsDataType[]) => void
+  isCheckoutSideMenuOpen: boolean,
+  openCheckoutSideMenu: () => void,
+  closeCheckoutSideMenu: () => void
 }

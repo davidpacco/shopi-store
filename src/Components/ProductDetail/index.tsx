@@ -1,16 +1,40 @@
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../Context'
 import './styles.css'
+import { CartProductsDataType } from '../../Interfaces/Interfaces'
 
 export function ProductDetail() {
   const {
     counter,
     setCounter,
     closeProductDetail,
+    openCheckoutSideMenu,
     productInfo,
     cartProducts,
     setCartProducts
   } = useContext(ShoppingCartContext)
+
+  function addToCart() {
+    let index = -1
+    for (let i = 0; i < cartProducts.length; i++) {
+      if (productInfo.id === cartProducts[i].id) {
+        index = i
+      }
+    }
+
+    if (index === -1) {
+      const productAdded:CartProductsDataType = {
+        ...productInfo,
+        quantity: 1
+      }
+      setCartProducts([...cartProducts, productAdded])
+    } else {
+      cartProducts[index].quantity += 1
+    }
+    closeProductDetail()
+    openCheckoutSideMenu()
+    setCounter(counter + 1)
+  }
 
   return (
     <aside className="product-detail flex flex-col fixed right-0 bottom-0 bg-white border border-black rounded-xl p-6 gap-3">
@@ -45,10 +69,7 @@ export function ProductDetail() {
       </p>
       <button
         className=' text-white font-semibold bg-black border-2 border-black rounded-lg h-9 w-full duration-200 active:scale-90 hover:bg-white hover:text-black'
-        onClick={() => {
-          setCartProducts([...cartProducts, productInfo])
-          setCounter(counter + 1)
-        }}
+        onClick={() => addToCart()}
       >
           Add to cart
       </button>

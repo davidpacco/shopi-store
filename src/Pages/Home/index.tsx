@@ -3,10 +3,14 @@ import { Card } from "../../Components/Card";
 import { ProductDetail } from "../../Components/ProductDetail";
 import { ProductDataType } from "../../Interfaces/Interfaces"
 import { ShoppingCartContext } from "../../Context";
+import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 export function Home() {
   const [products, setProducts] = useState<ProductDataType[] | null>(null)
-  const { isProductDetailOpen } = useContext(ShoppingCartContext)
+  const {
+    isProductDetailOpen,
+    isCheckoutSideMenuOpen
+  } = useContext(ShoppingCartContext)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +34,7 @@ export function Home() {
         }
       </div>
       { isProductDetailOpen && <ProductDetail /> }
+      { isCheckoutSideMenuOpen && <CheckoutSideMenu />}
     </>
   )
 }

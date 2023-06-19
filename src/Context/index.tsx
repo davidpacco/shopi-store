@@ -1,14 +1,11 @@
 import { ReactNode, createContext, useState } from "react";
-import { ShoppingCartContextType, ProductDataType } from "../Interfaces/Interfaces";
+import { ShoppingCartContextType, ProductDataType, CartProductsDataType } from "../Interfaces/Interfaces";
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType>({} as ShoppingCartContextType)
 
 export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   // Shopping cart - icon counter
   const [counter, setCounter] = useState(0)
-
-  // Shopping cart - add products
-  const [cartProducts, setCartProducts] = useState([] as ProductDataType[])
 
   // Product detail side bar - Open/Close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
@@ -17,6 +14,14 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
 
   // Selected product details
   const [productInfo, setProductInfo] = useState({} as ProductDataType)
+
+  // Checkout side menu - Open/Close
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+  const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+  const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+
+  // Shopping cart - add products
+  const [cartProducts, setCartProducts] = useState([] as CartProductsDataType[])
 
   return (
     <ShoppingCartContext.Provider
@@ -29,7 +34,10 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
         productInfo,
         setProductInfo,
         cartProducts,
-        setCartProducts
+        setCartProducts,
+        isCheckoutSideMenuOpen,
+        openCheckoutSideMenu,
+        closeCheckoutSideMenu
       }}
     >
       { children }
