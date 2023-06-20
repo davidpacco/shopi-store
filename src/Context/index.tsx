@@ -7,6 +7,9 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   // Get products from API
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[])
 
+  // Get products by title
+  const [searchedTitle, setSearchedTitle] = useState('')
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.escuelajs.co/api/v1/products')
@@ -43,6 +46,8 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
       value={{
         products,
         setProducts,
+        searchedTitle,
+        setSearchedTitle,
         counter,
         setCounter,
         isProductDetailOpen,
