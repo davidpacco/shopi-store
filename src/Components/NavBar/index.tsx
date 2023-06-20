@@ -11,13 +11,13 @@ export function NavBar() {
   } = useContext(ShoppingCartContext)
 
   const NavBarLeft:NavItemType[] = [
-    { to: '/', name: 'Shopi', logo: true },
-    { to: '/', name: 'All' },
-    { to: 'clothes', name: 'Clothes' },
-    { to: 'electronics', name: 'Electronics' },
-    { to: 'furnitures', name: 'Furnitures' },
-    { to: 'toys', name: 'Toys' },
-    { to: 'others', name: 'Others' },
+    { to: '/', name: 'Shopi', category: '', logo: true },
+    { to: '/', name: 'All', category: '' },
+    { to: 'clothes', name: 'Clothes', category: 'Clothes' },
+    { to: 'electronics', name: 'Electronics', category: 'Electronics' },
+    { to: 'furnitures', name: 'Furnitures', category: 'Furniture' },
+    { to: 'toys', name: 'Toys', category: 'Toys' },
+    { to: 'others', name: 'Others', category: 'Others' },
   ]
 
   const NavBarRight:NavItemType[] = [
@@ -35,6 +35,7 @@ export function NavBar() {
             key={item.name}
             to={item.to}
             isLogo={item?.logo}
+            category={item?.category}
           >
             {item.name}
           </NavItem>

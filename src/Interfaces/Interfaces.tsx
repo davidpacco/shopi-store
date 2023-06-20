@@ -2,6 +2,7 @@ export type NavItemType = {
   to: string
   name: string
   logo?: boolean
+  category?: string
 }
 
 export type ProductData = {
@@ -26,7 +27,9 @@ export type ShoppingCartContextType = {
   setProducts: (products: ProductData[]) => void
   filteredProducts: ProductData[]
   searchedTitle: string
-  setSearchedTitle: (text: string) => void
+  setSearchedTitle: (title: string) => void
+  searchedCategory: string
+  setSearchedCategory: (category: string) => void
   counter: number
   setCounter: (num: number) => void
   isProductDetailOpen: boolean

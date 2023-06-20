@@ -30,6 +30,9 @@ export function Home() {
           ))
         }
       </div>
+      {filteredProducts.length === 0 &&
+        <p className="text-center">No products to show</p>
+      }
       { isProductDetailOpen && <ProductDetail /> }
       { isCheckoutSideMenuOpen && <CheckoutSideMenu />}
     </>

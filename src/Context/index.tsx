@@ -12,6 +12,9 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   // Get products by title
   const [searchedTitle, setSearchedTitle] = useState('')
 
+  // Get products by category
+  const [searchedCategory, setSearchedCategory] = useState('')
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://api.escuelajs.co/api/v1/products')
@@ -21,13 +24,20 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
     fetchData()
   }, [])
 
-  const getFilteredProducts = (products: ProductData[], searchedTitle: string) => {
-    return products.filter(product => product.title.toLowerCase().includes(searchedTitle))
+  const getFilteredProductsByTitle = (products: ProductData[], searchedTitle: string) => {
+    return products.filter(product => product.title.toLowerCase().includes(searchedTitle.toLowerCase()))
+  }
+
+  const getFilteredProductsByCategory = (products: ProductData[], searchedCategory: string) => {
+    return products.filter(product => product.category.name.includes(searchedCategory))
   }
 
   useEffect(() => {
-    setFilteredProducts(getFilteredProducts(products, searchedTitle))
-  }, [products, searchedTitle])
+    if (searchedTitle && searchedCategory) setFilteredProducts(getFilteredProductsByCategory(products, searchedCategory).filter(product => product.title.toLowerCase().includes(searchedTitle.toLowerCase())))
+    if (searchedTitle && !searchedCategory) setFilteredProducts(getFilteredProductsByTitle(products, searchedTitle))
+    if (!searchedTitle && searchedCategory) setFilteredProducts(getFilteredProductsByCategory(products, searchedCategory))
+    if (!searchedTitle && !searchedCategory) setFilteredProducts(products)
+  }, [products, searchedTitle, searchedCategory])
 
   // Shopping cart - icon counter
   const [counter, setCounter] = useState(0)
@@ -50,6 +60,7 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
 
   // Shopping cart - place order
   const [order, setOrder] = useState([] as Order[])
+  console.log(filteredProducts)
 
   return (
     <ShoppingCartContext.Provider
@@ -59,6 +70,8 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
         filteredProducts,
         searchedTitle,
         setSearchedTitle,
+        searchedCategory,
+        setSearchedCategory,
         counter,
         setCounter,
         isProductDetailOpen,
