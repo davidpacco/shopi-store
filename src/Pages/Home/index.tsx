@@ -17,8 +17,8 @@ export function Home() {
         {
           products?.map(product => (
             <Card
-            key={product.id}
-            product={product}
+              key={product.id}
+              product={product}
             />
           ))
         }

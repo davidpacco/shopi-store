@@ -15,6 +15,9 @@ export function MyOrders() {
 
   return (
     <div className="flex flex-col gap-4 mb-10">
+      <h1 className="text-xl font-bold text-center">
+        My orders
+      </h1>
       {order.map((order, index) => (
         <Link
           to={`/my-orders/${index + 1}`}

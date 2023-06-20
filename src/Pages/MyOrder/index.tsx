@@ -16,9 +16,9 @@ export function MyOrder() {
     return (
       <div className="w-80 pb-10">
         <div className="relative">
-          <h3 className="text-xl font-bold text-center">
+          <h1 className="text-xl font-bold text-center">
             My order
-          </h3>
+          </h1>
           <Link to='/my-orders'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-full absolute left-0 top-0">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />

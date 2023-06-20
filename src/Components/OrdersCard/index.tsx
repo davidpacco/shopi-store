@@ -10,7 +10,7 @@ export function OrdersCard({ id, totalProducts, totalPrice, date }: Props) {
     <div className='h-28 w-80 flex flex-col border rounded-xl p-4 justify-between shadow-md shadow-gray-300 tran'>
 
       <div className="flex items-center justify-center relative">
-        <h3 className="font-bold">ORDER #{id}</h3>
+        <h3 className="font-bold">Order #{id}</h3>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-full absolute top-0 right-0">
           <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
