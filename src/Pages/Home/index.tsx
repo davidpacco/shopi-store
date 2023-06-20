@@ -7,7 +7,7 @@ import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 export function Home() {
   const {
     setSearchedTitle,
-    products,
+    filteredProducts,
     isProductDetailOpen,
     isCheckoutSideMenuOpen
   } = useContext(ShoppingCartContext)
@@ -22,7 +22,7 @@ export function Home() {
       />
       <div className="grid gap-5 grid-cols-4 w-full max-w-screen-lg">
         {
-          products?.map(product => (
+          filteredProducts?.map(product => (
             <Card
               key={product.id}
               product={product}

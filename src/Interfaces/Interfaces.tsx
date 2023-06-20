@@ -24,6 +24,7 @@ export type CartProductsData = ProductData & ProductQuantity
 export type ShoppingCartContextType = {
   products: ProductData[]
   setProducts: (products: ProductData[]) => void
+  filteredProducts: ProductData[]
   searchedTitle: string
   setSearchedTitle: (text: string) => void
   counter: number

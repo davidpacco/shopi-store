@@ -7,6 +7,8 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   // Get products from API
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[])
 
+  const [filteredProducts, setFilteredProducts] = useState<ProductData[]>([] as ProductData[])
+
   // Get products by title
   const [searchedTitle, setSearchedTitle] = useState('')
 
@@ -18,6 +20,14 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
     }
     fetchData()
   }, [])
+
+  const getFilteredProducts = (products: ProductData[], searchedTitle: string) => {
+    return products.filter(product => product.title.toLowerCase().includes(searchedTitle))
+  }
+
+  useEffect(() => {
+    setFilteredProducts(getFilteredProducts(products, searchedTitle))
+  }, [products, searchedTitle])
 
   // Shopping cart - icon counter
   const [counter, setCounter] = useState(0)
@@ -46,6 +56,7 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
       value={{
         products,
         setProducts,
+        filteredProducts,
         searchedTitle,
         setSearchedTitle,
         counter,
