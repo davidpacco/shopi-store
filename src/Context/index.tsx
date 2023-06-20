@@ -60,7 +60,6 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
 
   // Shopping cart - place order
   const [order, setOrder] = useState([] as Order[])
-  console.log(filteredProducts)
 
   return (
     <ShoppingCartContext.Provider

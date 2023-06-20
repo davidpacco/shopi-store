@@ -7,6 +7,7 @@ import './styles.css'
 
 export function CheckoutSideMenu() {
   const {
+    setSearchedTitle,
     counter,
     setCounter,
     cartProducts,
@@ -36,6 +37,7 @@ export function CheckoutSideMenu() {
     setCartProducts([])
     closeCheckoutSideMenu()
     setCounter(0)
+    setSearchedTitle('')
   }
 
   return (
