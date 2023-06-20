@@ -1,9 +1,21 @@
-import { ReactNode, createContext, useState } from "react";
-import { ShoppingCartContextType, ProductDataType, CartProductsDataType, Order } from "../Interfaces/Interfaces";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { ShoppingCartContextType, ProductData, CartProductsData, Order } from "../Interfaces/Interfaces";
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType>({} as ShoppingCartContextType)
 
 export function ShoppingCartProvider({ children }: {children: ReactNode}) {
+  // Get products from API
+  const [products, setProducts] = useState<ProductData[]>([] as ProductData[])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://api.escuelajs.co/api/v1/products')
+      const data = await response.json()
+      setProducts(data)
+    }
+    fetchData()
+  }, [])
+
   // Shopping cart - icon counter
   const [counter, setCounter] = useState(0)
 
@@ -13,7 +25,7 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   const closeProductDetail = () => setIsProductDetailOpen(false)
 
   // Selected product details
-  const [productInfo, setProductInfo] = useState({} as ProductDataType)
+  const [productInfo, setProductInfo] = useState({} as ProductData)
 
   // Checkout side menu - Open/Close
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
@@ -21,7 +33,7 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
   // Shopping cart - add products
-  const [cartProducts, setCartProducts] = useState([] as CartProductsDataType[])
+  const [cartProducts, setCartProducts] = useState([] as CartProductsData[])
 
   // Shopping cart - place order
   const [order, setOrder] = useState([] as Order[])
@@ -29,6 +41,8 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
   return (
     <ShoppingCartContext.Provider
       value={{
+        products,
+        setProducts,
         counter,
         setCounter,
         isProductDetailOpen,

@@ -1,25 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Card } from "../../Components/Card";
 import { ProductDetail } from "../../Components/ProductDetail";
-import { ProductDataType } from "../../Interfaces/Interfaces"
 import { ShoppingCartContext } from "../../Context";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 export function Home() {
-  const [products, setProducts] = useState<ProductDataType[] | null>(null)
   const {
+    products,
     isProductDetailOpen,
     isCheckoutSideMenuOpen
   } = useContext(ShoppingCartContext)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://api.escuelajs.co/api/v1/products')
-      const data = await response.json()
-      setProducts(data)
-    }
-    fetchData()
-  }, [])
 
   return (
     <>

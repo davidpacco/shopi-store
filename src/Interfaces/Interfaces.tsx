@@ -4,7 +4,7 @@ export type NavItemType = {
   logo?: boolean
 }
 
-export type ProductDataType = {
+export type ProductData = {
   title: string
   id: number
   price: number
@@ -19,18 +19,20 @@ type ProductQuantity = {
   quantity: number
 }
 
-export type CartProductsDataType = ProductDataType & ProductQuantity
+export type CartProductsData = ProductData & ProductQuantity
 
 export type ShoppingCartContextType = {
+  products: ProductData[]
+  setProducts: (products: ProductData[]) => void
   counter: number
   setCounter: (num: number) => void
   isProductDetailOpen: boolean
   openProductDetail: () => void
   closeProductDetail: () => void
-  productInfo: ProductDataType
-  setProductInfo: (product: ProductDataType) => void
-  cartProducts: CartProductsDataType[],
-  setCartProducts: (product: CartProductsDataType[]) => void
+  productInfo: ProductData
+  setProductInfo: (product: ProductData) => void
+  cartProducts: CartProductsData[],
+  setCartProducts: (product: CartProductsData[]) => void
   isCheckoutSideMenuOpen: boolean,
   openCheckoutSideMenu: () => void,
   closeCheckoutSideMenu: () => void,
@@ -40,6 +42,6 @@ export type ShoppingCartContextType = {
 
 export type Order = {
   date: Date
-  products: CartProductsDataType[]
+  products: CartProductsData[]
   total: number
 }
