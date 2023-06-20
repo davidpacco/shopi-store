@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { CartProductsDataType, ProductDataType } from "../../Interfaces/Interfaces"
+import { CartProductsData, ProductData } from "../../Interfaces/Interfaces"
 import { ShoppingCartContext } from "../../Context"
 
-export function Card({ product }: { product: ProductDataType }) {
+export function Card({ product }: { product: ProductData }) {
   const {
     counter,
     setCounter,
@@ -30,7 +30,7 @@ export function Card({ product }: { product: ProductDataType }) {
     }
 
     if (index === -1) {
-      const productAdded:CartProductsDataType = {
+      const productAdded:CartProductsData = {
         ...product,
         quantity: 1
       }

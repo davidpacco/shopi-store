@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../Context'
 import './styles.css'
-import { CartProductsDataType } from '../../Interfaces/Interfaces'
+import { CartProductsData } from '../../Interfaces/Interfaces'
 
 export function ProductDetail() {
   const {
@@ -23,7 +23,7 @@ export function ProductDetail() {
     }
 
     if (index === -1) {
-      const productAdded:CartProductsDataType = {
+      const productAdded:CartProductsData = {
         ...productInfo,
         quantity: 1
       }

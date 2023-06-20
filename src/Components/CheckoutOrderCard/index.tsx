@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
-import { CartProductsDataType } from "../../Interfaces/Interfaces";
+import { CartProductsData } from "../../Interfaces/Interfaces";
 
 type Props = {
-  product: CartProductsDataType
+  product: CartProductsData
   index: number
   deleteCartProduct?: (index: number) => void
 }
