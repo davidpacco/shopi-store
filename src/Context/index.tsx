@@ -4,6 +4,12 @@ import { ShoppingCartContextType, ProductData, CartProductsData, Order } from ".
 export const ShoppingCartContext = createContext<ShoppingCartContextType>({} as ShoppingCartContextType)
 
 export function ShoppingCartProvider({ children }: {children: ReactNode}) {
+  // My account
+  const [account, setAccount] = useState({})
+
+  // Sign Out
+  const [signOut, setSignOut] = useState(true)
+
   // Get products from API
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[])
 
@@ -84,7 +90,11 @@ export function ShoppingCartProvider({ children }: {children: ReactNode}) {
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
         order,
-        setOrder
+        setOrder,
+        account,
+        setAccount,
+        signOut,
+        setSignOut
       }}
     >
       { children }

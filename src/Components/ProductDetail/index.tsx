@@ -5,6 +5,7 @@ import { CartProductsData } from '../../Interfaces/Interfaces'
 
 export function ProductDetail() {
   const {
+    signOut,
     counter,
     setCounter,
     closeProductDetail,
@@ -13,6 +14,10 @@ export function ProductDetail() {
     cartProducts,
     setCartProducts
   } = useContext(ShoppingCartContext)
+
+  const lsSignOut = localStorage.getItem('sign-out')
+  const parsedSignOut = JSON.parse(lsSignOut as string)
+  const isUserSignOut = signOut || parsedSignOut
 
   function addToCart() {
     let index = -1
@@ -69,7 +74,7 @@ export function ProductDetail() {
       </p>
       <button
         className=' text-white font-semibold bg-black border-2 border-black rounded-lg h-9 w-full duration-200 active:scale-90 hover:bg-white hover:text-black'
-        onClick={() => addToCart()}
+        onClick={() => isUserSignOut ? window.location.href = '/signin' : addToCart()}
       >
           Add to cart
       </button>

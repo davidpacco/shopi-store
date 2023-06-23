@@ -4,6 +4,7 @@ import { ShoppingCartContext } from "../../Context"
 
 export function Card({ product }: { product: ProductData }) {
   const {
+    signOut,
     counter,
     setCounter,
     openProductDetail,
@@ -15,13 +16,17 @@ export function Card({ product }: { product: ProductData }) {
     setCartProducts
   } = useContext(ShoppingCartContext)
 
+  const lsSignOut = localStorage.getItem('sign-out')
+  const parsedSignOut = JSON.parse(lsSignOut as string)
+  const isUserSignOut = signOut || parsedSignOut
+
   function showProduct() {
     setProductInfo(product)
     closeCheckoutSideMenu()
     openProductDetail()
   }
 
-  function addToCart() {
+  function addToCart(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     let index = -1
     for (let i = 0; i < cartProducts.length; i++) {
       if (product.id === cartProducts[i].id) {
@@ -38,6 +43,7 @@ export function Card({ product }: { product: ProductData }) {
     } else {
       cartProducts[index].quantity += 1
     }
+    event.stopPropagation()
     closeProductDetail()
     openCheckoutSideMenu()
     setCounter(counter + 1)
@@ -59,10 +65,7 @@ export function Card({ product }: { product: ProductData }) {
         />
         <button
           className="absolute top-0 right-0 grid place-content-center bg-white w-6 h-6 rounded-full m-2 p-2 active:scale-90 duration-200 origin-center"
-          onClick={(e) => {
-            addToCart()
-            e.stopPropagation()
-          }}
+          onClick={(event) => isUserSignOut ? window.location.href = '/signin' : addToCart(event)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />

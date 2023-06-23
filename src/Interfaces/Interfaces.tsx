@@ -1,7 +1,8 @@
 export type NavItemType = {
   to: string
   name: string
-  logo?: boolean
+  isLogo?: boolean
+  isSignIn?: boolean
   category?: string
 }
 
@@ -44,6 +45,10 @@ export type ShoppingCartContextType = {
   closeCheckoutSideMenu: () => void,
   order: Order[],
   setOrder: (order: Order[]) => void
+  account: object
+  setAccount: (obj: object) => void
+  signOut: boolean
+  setSignOut: (bool: boolean) => void
 }
 
 export type Order = {
